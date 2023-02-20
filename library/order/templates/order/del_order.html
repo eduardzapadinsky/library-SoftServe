@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block styles %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'author/css/style.css' %}">
+{% endblock %}
+{% block title %}Order root operations{% endblock %}
+{% block content %}
+{% if not orders %}
+<form class="orderAddForm" action="" method="post">
+    {% csrf_token %}
+    {{ form0.as_table }}<br>
+    <input type="submit" value="Submit">
+</form>
+{% else %}
+
+<form class="orderAddForm" action="" method="post">
+    {% csrf_token %}
+     {{ form1.as_table }}
+    <input type="submit" value="Delete">
+</form>
+
+<table>
+    <caption><h2> Orders </h2></caption>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Book</th>
+      <th>Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for order in orders %}
+     <tr>
+        <td>{{ order.id }}</td>
+        <td>{{ order.book.name }}</td>
+        <td>{{ order.created_at }}</td>
+     </tr>
+    {% endfor %}
+     </tbody>
+  </table>
+  {% endif %}
+  <hr>
+{% endblock %}

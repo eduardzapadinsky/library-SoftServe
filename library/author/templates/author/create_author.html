@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'author/css/style.css' %}">
+{% endblock %}
+{% block title %}
+Create author
+{% endblock %}
+
+
+{% block content %}
+  {% if request.user.role %}
+    {% if author %}
+      <div class="successAdded"> Successful added author {{ author.name }} </div>
+    {% endif %}
+    <form class="orderAddForm" action="" method="post">
+
+      {% csrf_token %}
+      <a>Name</a>
+      {{ form.name }}
+      <a>Surname</a>
+     {{ form.surname }}
+      <a>Patronymic</a>
+      {{ form.patronymic }}
+      <input type="submit" value="Add author">
+    </form>
+  {% else %}
+    <h2 class="warning">Access Denied <hr> <span class="black">Only librarian manage create
+      authors</span></h2>
+  {% endif %}
+{% endblock %}

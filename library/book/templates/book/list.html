@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Books Page{% endblock %}
+{% block content %}
+
+  {% if not filtered %}
+    <div class="flex">
+    <h3 style="display: inline">You can also find book title, count or description</h3>
+    
+    <form class="formSearch" action="" method="post">
+      {% csrf_token %}
+      {#      <label for="name">First name:</label><br>#}
+      <input class="searchBook" type="text" name="data" id="name" value="search">
+      <input type="submit" value="Submit">
+    </form>
+    </div>
+  {% endif %}
+  <a href="{% url 'book:create-book' %}"><button>Create</button></a>
+  <div class="flexCont">
+    {% for book in data %}
+      <div class="item">
+        <h1>{{ book.authors }}</h1>
+        <h2><a href="{{ book.id }}">{{ book.name }}</a></h2>
+        <p>{{ book.description }}</p>
+        Count: <span>{{ book.count }}</span>
+
+        <h3>{{ book.author }}</h3>
+      </div>
+    {% endfor %}
+  </div>
+  <div class="flexLinks">
+    <div></div>
+  </div>
+  
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block styles %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'author/css/style.css' %}">
+{% endblock %}
+{% block title %}User role{% endblock %}
+{% block content %}
+<form class="orderAddForm" action="" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit"><br><br>
+</form>
+
+  {% if post %}
+<table>
+    <caption><h2> User </h2></caption>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Last name</th>
+        <th>email</th>
+        <th>Created</th>
+        <th>Role</th>
+    </tr>
+    </thead>
+    <tbody>
+
+     <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.first_name }}</td>
+            <td>{{ user.last_name }}</td>
+            <td>{{ user.email}}</td>
+            <td>{{ user.created_at }}</td>
+            <td>{{ role }}</td>
+     </tr>
+
+     </tbody>
+  </table><br><br>
+  {% endif %}
+  <hr>
+<a>role of user {{user_by_id}}</a>
+{% endblock %}

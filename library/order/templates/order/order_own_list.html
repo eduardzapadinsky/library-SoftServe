@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block styles %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'author/css/style.css' %}">
+{% endblock %}
+{% block title %}List of users{% endblock %}
+{% block content %}
+
+
+  <table>
+    <caption><h2> My Orders </h2></caption>
+    <thead>
+    <tr>
+      <th>Book name</th>
+      <th>User email</th>
+      <th>Until </th>
+    </tr>
+    </thead>
+    <tbody>
+
+
+    {% for order in order_by_id %}
+      <tr>
+        <td>{{ order.book.name }}</td>
+        <td>{{ order.user.email }}</td>
+        <td>{{ order.plated_end_at }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  <hr>
+{#  {% if request.user.role %}#}
+    <div class="flexLinks">
+      <div><a href="{% url 'order:new_order' %}">New order</a></div>
+    </div>
+{#  {% endif %}#}
+
+{% endblock %}
