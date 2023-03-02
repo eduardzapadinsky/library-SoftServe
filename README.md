@@ -1,1 +1,3 @@
-# Django, Django REST, Docker command SoftServe project 
+# Django, Django REST, Docker project
+
+Library website team project
