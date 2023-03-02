@@ -1,1 +1,1 @@
-# Django_Docker
+# Django, Django REST, Docker command SoftServe project 
